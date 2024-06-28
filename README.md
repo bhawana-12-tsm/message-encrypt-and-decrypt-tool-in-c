@@ -93,6 +93,7 @@ char *decrypt(char *cipher, long d, long n) {
 }
 
 int main() {
+  int num;
   int p, q, lambda_n;
   long n, e, d;
   char *message;
@@ -110,16 +111,28 @@ int main() {
     printf("\nThe value of lambda_n is %d", lambda_n);
     printf("\nThe value of e is %ld", e);
     printf("\nThe value of d is %ld", d);
+    printf("\nenter 1 to encrypt message or 2 to decrypt:");
+    scanf("%d",&num);
+    if(num==1)
+    {
     printf("\nEnter the message: ");
     message = (char *)malloc(sizeof(char) * 100);
     scanf("%s", message);
     cipher = encrypt(message, e, n);
     puts("\nThe encrypted message is: ");
     printf("%s", cipher);
+    }
+    else if(num==2)
+    {
+    printf("\nEnter the message: ");
+    cipher = (char *)malloc(sizeof(char) * 100);
+    scanf("%s", cipher);
     message = decrypt(cipher, d, n);
-    puts("\nThe original message was: ");
+    puts("\nThe decrypted message is:");
     printf("%s", message);
-  } else {
+  }
+  }
+  else {
     printf("\nThe value of p and q should be prime.");
   }
   return 0;
